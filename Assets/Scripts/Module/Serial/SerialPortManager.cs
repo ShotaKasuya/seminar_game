@@ -1,36 +1,32 @@
+using System;
 using System.IO.Ports;
-using Module.Serial;
 
-public class SerialPortManager
+namespace Module.Serial
 {
-    public static SerialPortManager Instance { get; private set; }
-
-    public void Init(
-        string portName,
-        SerialPortToml toml
-    )
+    public class SerialPortManager : IPortWritable, IPortInitializable, IDisposable
     {
-        Instance = new SerialPortManager(portName, toml);
+        public void InitializePort(SerialPort serialPort)
+        {
+            serialPort.Open();
+            Port = serialPort;
+        }
+
+        public void RenamePort(string name)
+        {
+            Port.PortName = name;
+        }
+
+        public void Write(Finger finger)
+        {
+            var ifinger = (int)finger;
+            Port.Write(ifinger.ToString());
+        }
+
+        private SerialPort Port { get; set; }
+
+        public void Dispose()
+        {
+            Port?.Dispose();
+        }
     }
-    private SerialPortManager
-    (
-        string portName,
-        SerialPortToml portToml
-    )
-    {
-        Port = new SerialPort();
-
-        Port.PortName = portName;
-        Port.BaudRate = portToml.BaudRate;
-        Port.Parity = portToml.PortParity;
-        Port.DataBits = portToml.PortDataBits;
-        Port.StopBits = portToml.StopBits;
-        Port.Handshake = portToml.PortHandshake;
-        Port.DtrEnable = true;  // Arduinoの場合必要 https://qiita.com/GANTZ/items/da08d09d318d59a60224
-
-        Port.ReadTimeout = portToml.ReadTimeOut;
-        Port.WriteTimeout = portToml.WriteTimeOut;
-    }
-
-    private SerialPort Port { get; }
 }
