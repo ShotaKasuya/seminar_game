@@ -10,9 +10,9 @@ namespace Module.Serial
             _name = name;
         }
 
-        public void Write(Finger finger)
+        public void Write(Packet packet)
         {
-            Debug.Log($"Finger {finger} shocked!");
+            Debug.Log($"Finger {packet.ToString()} shocked!");
         }
 
         private string _name;

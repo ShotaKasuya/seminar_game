@@ -1,37 +1,45 @@
 using System;
+using Domain.IModel.OutGame.SelectSerial;
 using Domain.IView.OutGame.SelectSerialPort;
 using Module.Serial;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Domain.UseCase.OutGame.SelectSerialPort
 {
-    public class SetSerialPortCase<T> : IDisposable
-    where T: class, IPortWritable, new()
+    public class SetSerialPortCase : IDisposable
     {
         public SetSerialPortCase
         (
-            SerialPortFactory<T> portFactory,
-            ISelectionView selectionView
+            IPortInitializable portInitializable,
+            ISelectionView selectionView,
+            IMutSelectedSerialModel serialModel
         )
         {
-            PortFactory = portFactory;
+            PortInitializable = portInitializable;
             SelectionView = selectionView;
+            SerialModel = serialModel;
 
-            selectionView.UpdateList(PortUtil.GetSerialPorts());
             selectionView.SelectEvent += OnSelect;
+            selectionView.DecisionEvent += OnDecision;
+            selectionView.UpdateList(PortUtil.GetSerialPorts());
+        }
+
+        private void OnDecision()
+        {
+            var serialName = SerialModel.SelectedPortName;
+            Debug.Log(serialName);
+            PortInitializable.InitializePort(serialName);
+            SceneManager.LoadScene("SendSerial");
         }
 
         private void OnSelect(SelectedSerial serial)
         {
-            if (Locator.Locator.TryResolve(out T instance))
-            {
-                instance.RenamePort(serial.SerialName);
-                return;
-            }
-            IPortWritable serialPort = PortFactory.MakeSerial(serial.SerialName);
-            Locator.Locator.Register(serialPort);
+            SerialModel.SetSerialPort(serial.SerialName);
         }
         
-        private SerialPortFactory<T> PortFactory { get; }
+        private IMutSelectedSerialModel SerialModel { get; }
+        private IPortInitializable PortInitializable { get; }
         private ISelectionView SelectionView { get; }
 
         public void Dispose()

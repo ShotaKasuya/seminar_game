@@ -2,20 +2,13 @@
 
 namespace Module.Serial
 {
-    public class SerialPortFactory<T>
-        where T : IPortWritable, new()
+    public class SerialPortFactory
     {
         /// <summary>
         /// シリアルポートのインスタンスを作成する
         /// </summary>
-        /// <param name="portName"></param>
-        /// <returns></returns>
-        public T MakeSerial(string portName)
+        public static SerialPort MakeSerial()
         {
-            var t = new T();
-
-            if (t is IPortInitializable portInitializable)
-            {
                 var serial = new SerialPort()
                 {
                     BaudRate = BaudRate,
@@ -25,14 +18,11 @@ namespace Module.Serial
                     Handshake = PortHandshake,
                     DtrEnable = DtrEnable,
                     RtsEnable = RtsEnable,
-                    PortName = portName,
                     ReadTimeout = ReadTimeOut,
                     WriteTimeout = WriteTimeOut
                 };
-                portInitializable.InitializePort(serial);
-            }
 
-            return t;
+            return serial;
         }
 
         private const int BaudRate = 9600;
