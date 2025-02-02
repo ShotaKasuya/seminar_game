@@ -1,9 +1,11 @@
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
+using System.IO.Ports;
 #elif UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX
 using System.IO;
 #endif
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Module.Serial
@@ -27,7 +29,7 @@ namespace Module.Serial
         // Windows向け: System.Managementを利用
         private static List<string> GetSerialPortsWindows()
         {
-            List<string> ports = SerialPort.GetPortNames();
+            List<string> ports = SerialPort.GetPortNames().ToList();
 
             foreach (string port in ports)
             {
