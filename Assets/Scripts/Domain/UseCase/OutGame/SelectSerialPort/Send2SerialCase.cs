@@ -23,7 +23,6 @@ namespace Domain.UseCase.OutGame.SelectSerialPort
         {
             var serialized = Convert.ToString(packet.Serialize(), 2).PadLeft(8, '0');
             Debug.Log($"packet: {packet.ToString()}, serialized: {serialized}");
-            Debug.Log(packet.ToString());
             PortWritable.Write(packet);
         }
 

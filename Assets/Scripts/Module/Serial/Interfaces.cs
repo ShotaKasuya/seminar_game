@@ -56,8 +56,8 @@ namespace Module.Serial
 
     public enum HandType
     {
-        Left,
-        Right,
+        Left = 0b_0,
+        Right = 0b_1,
     }
 
     /// <summary>
@@ -68,26 +68,26 @@ namespace Module.Serial
         /// <summary>
         /// 親指。
         /// </summary>
-        Thumb,
+        Thumb = 0b_0001,
 
         /// <summary>
         /// 人差し指。
         /// </summary>
-        Index,
+        Index = 0b_0010,
 
         /// <summary>
         /// 中指。
         /// </summary>
-        Middle,
+        Middle = 0b_0011,
 
         /// <summary>
         /// 薬指。
         /// </summary>
-        Ring,
+        Ring = 0b_0100,
 
         /// <summary>
         /// 小指。
         /// </summary>
-        Little,
+        Little = 0b_0101,
     }
 }

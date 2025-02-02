@@ -19,9 +19,11 @@ namespace View.OutGame
             hand.ClearOptions();
             hand.AddOptions(Enum.GetNames(typeof(HandType)).ToList());
             hand.onValueChanged.AddListener(OnHandChange);
+            OnHandChange(0);
             finger.ClearOptions();
             finger.AddOptions(Enum.GetNames(typeof(FingerType)).ToList());
             finger.onValueChanged.AddListener(OnFingerChange);
+            OnFingerChange(0);
 
             time.onEndEdit.AddListener(OnTimeChanged);
             sendButton.onClick.AddListener(InvokeSelectEvent);
