@@ -1,14 +1,19 @@
 using System;
 using System.IO.Ports;
+using UnityEngine;
 
 namespace Module.Serial
 {
     public class SerialPortManager : IPortWritable, IPortInitializable, IDisposable
     {
-        public void InitializePort(SerialPort serialPort)
+        public SerialPortManager(SerialPort serialPort)
         {
-            serialPort.Open();
             Port = serialPort;
+        }
+        public void InitializePort(string portName)
+        {
+            Port.PortName = portName;
+            Port.Open();
         }
 
         public void RenamePort(string name)
@@ -16,10 +21,17 @@ namespace Module.Serial
             Port.PortName = name;
         }
 
-        public void Write(Finger finger)
+        public void Write(Packet packet)
         {
-            var ifinger = (int)finger;
-            Port.Write(ifinger.ToString());
+            if (Port.IsOpen)
+            {
+                var buf = new[] { packet.Serialize() };
+                Port.Write(buf, 0, 1);
+                return;
+            }
+
+            Debug.LogWarning($"send data fail. data: {Convert.ToString(packet.Serialize(), 2)}\n" +
+                             "port not opened");
         }
 
         private SerialPort Port { get; set; }

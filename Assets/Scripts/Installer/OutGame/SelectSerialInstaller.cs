@@ -1,4 +1,5 @@
 using Domain.UseCase.OutGame.SelectSerialPort;
+using Model.OutGame.SelectSerial;
 using Module.Serial;
 using UnityEngine;
 using View.OutGame;
@@ -9,17 +10,18 @@ namespace Installer.OutGame
     {
         [SerializeField] private SelectionView selectionView;
 
-        private SetSerialPortCase<SerialPortManager> _serialPortCase;
+        private SetSerialPortCase _serialPortCase;
 
-        private void Awake()
+        private void Start()
         {
-            var portFactory = new SerialPortFactory<SerialPortManager>();
-            _serialPortCase = new SetSerialPortCase<SerialPortManager>(portFactory, selectionView);
+            var portInitializable = GlobalLocator.Resolve<IPortInitializable>();
+            var serialModel = new SelectedSerialModel();
+            _serialPortCase = new SetSerialPortCase(portInitializable, selectionView, serialModel);
         }
 
         private void OnDestroy()
         {
-            _serialPortCase.Dispose();
+            _serialPortCase?.Dispose();
         }
     }
 }

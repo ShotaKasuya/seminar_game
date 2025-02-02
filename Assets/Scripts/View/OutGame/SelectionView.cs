@@ -18,14 +18,13 @@ namespace View.OutGame
         {
             submitButton.onClick.AddListener(OnSubmit);
             portDropdown.onValueChanged.AddListener(InvokeSelectEvent);
-            const int defaultIndex = 0;
-            InvokeSelectEvent(defaultIndex);
         }
 
         public void UpdateList(List<string> listContents)
         {
             portDropdown.ClearOptions();
             portDropdown.AddOptions(listContents);
+            InvokeSelectEvent(0);
         }
 
         private void OnSubmit()
