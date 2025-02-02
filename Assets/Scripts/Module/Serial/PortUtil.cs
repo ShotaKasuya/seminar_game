@@ -3,10 +3,8 @@ using System.IO.Ports;
 #elif UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX
 using System.IO;
 #endif
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace Module.Serial
 {
@@ -30,34 +28,6 @@ namespace Module.Serial
         private static List<string> GetSerialPortsWindows()
         {
             List<string> ports = SerialPort.GetPortNames().ToList();
-
-            foreach (string port in ports)
-            {
-                try
-                {
-                    string query = $"SELECT * FROM Win32_PnPEntity WHERE Caption LIKE '%({port})%'";
-                    using (var searcher = new System.Management.ManagementObjectSearcher(query))
-                    {
-                        foreach (var obj in searcher.Get())
-                        {
-                            string deviceName = obj["Caption"].ToString();
-                            Debug.Log($"ポート: {port}, デバイス: {deviceName}");
-
-                            // Arduinoなど特定のデバイス名で絞り込む
-                            if (deviceName.Contains("Arduino"))
-                            {
-                                ports.Add(deviceName);
-                                Debug.Log($"Arduinoが接続されているポート: {port}");
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogError($"Windowsでポート情報を取得中にエラーが発生しました: {ex.Message}");
-                }
-            }
-
             return ports;
         }
 #elif UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX

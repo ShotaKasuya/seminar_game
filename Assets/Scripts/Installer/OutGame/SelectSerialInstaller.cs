@@ -14,7 +14,7 @@ namespace Installer.OutGame
 
         private void Start()
         {
-            var portInitializable = GlobalLocator.Resolve<IPortInitializable>();
+            var portInitializable = GlobalLocator.Instance.Resolve<IPortInitializable>();
             var serialModel = new SelectedSerialModel();
             _serialPortCase = new SetSerialPortCase(portInitializable, selectionView, serialModel);
         }

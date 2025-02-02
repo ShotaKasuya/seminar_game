@@ -18,14 +18,11 @@ namespace Installer
             var portManager = new SerialPortManager(serialPort);
             Register<IPortWritable>(portManager);
             Register<IPortInitializable>(portManager);
-
-            var serialLogger = new SerialLogger(serialPort);
-            Register(serialLogger);
         }
 
-        private static Dictionary<Type, object> InstanceDictionary { get; } = new Dictionary<Type, object>();
-        private static HashSet<ITickable> Tickables { get; } = new();
-        private static HashSet<IDisposable> Disposables { get; } = new();
+        private Dictionary<Type, object> InstanceDictionary { get; } = new Dictionary<Type, object>();
+        private HashSet<ITickable> Tickables { get; } = new();
+        private HashSet<IDisposable> Disposables { get; } = new();
 
         private void Update()
         {
@@ -35,7 +32,7 @@ namespace Installer
             }
         }
 
-        private static void Register<T>(T instance) where T : class
+        private void Register<T>(T instance) where T : class
         {
             InstanceDictionary[typeof(T)] = instance;
             if (instance is IDisposable disposable)
@@ -49,7 +46,7 @@ namespace Installer
             }
         }
 
-        public static T Resolve<T>() where T : class
+        public T Resolve<T>() where T : class
         {
             if (InstanceDictionary.TryGetValue(typeof(T), out var instance))
             {

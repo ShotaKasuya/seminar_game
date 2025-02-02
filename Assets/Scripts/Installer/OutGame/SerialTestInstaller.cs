@@ -14,7 +14,7 @@ namespace Installer.OutGame
         
         private void Awake()
         {
-            var port = GlobalLocator.Resolve<IPortWritable>();
+            var port = GlobalLocator.Instance.Resolve<IPortWritable>();
             _disposable = new Send2SerialCase(port, testView);
         }
 

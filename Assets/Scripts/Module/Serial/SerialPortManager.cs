@@ -1,32 +1,72 @@
 using System;
 using System.IO.Ports;
+using System.Threading;
+using Module.Installer;
 using UnityEngine;
 
 namespace Module.Serial
 {
-    public class SerialPortManager : IPortWritable, IPortInitializable, IDisposable
+    public class SerialPortManager : IPortWritable, IPortInitializable, ITickable, IDisposable
     {
         public SerialPortManager(SerialPort serialPort)
         {
-            Port = serialPort;
-        }
-        public void InitializePort(string portName)
-        {
-            Port.PortName = portName;
-            Port.Open();
+            SerialPort = serialPort;
+            _isRunning = true;
+            ReadThread = new Thread(ReadSerialData);
+            ReadThread.Start();
         }
 
-        public void RenamePort(string name)
+        public void InitializePort(string portName)
         {
-            Port.PortName = name;
+            SerialPort.PortName = portName;
+            SerialPort.Open();
         }
+
+        public void Tick()
+        {
+            if (!string.IsNullOrEmpty(_buf))
+            {
+                Debug.Log(_buf);
+                _buf = "";
+            }
+        }
+
+        private void ReadSerialData()
+        {
+            while (_isRunning)
+            {
+                try
+                {
+                    if (SerialPort.IsOpen)
+                    {
+                        var data = SerialPort.ReadLine();
+                        if (!string.IsNullOrEmpty(data))
+                        {
+                            _buf = data;
+                        }
+                    }
+                }
+                catch (TimeoutException)
+                {
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"serial port error: {e}");
+                }
+            }
+        }
+
+        private bool _isRunning;
+        private string _buf;
+        private Thread ReadThread { get; }
+        private SerialPort SerialPort { get; }
 
         public void Write(Packet packet)
         {
-            if (Port.IsOpen)
+            if (SerialPort.IsOpen)
             {
                 var buf = new[] { packet.Serialize() };
-                Port.Write(buf, 0, 1);
+                SerialPort.Write(buf, 0, 1);
                 return;
             }
 
@@ -34,11 +74,16 @@ namespace Module.Serial
                              "port not opened");
         }
 
-        private SerialPort Port { get; set; }
 
         public void Dispose()
         {
-            Port?.Dispose();
+            _isRunning = false;
+            SerialPort.Close();
+            if (ReadThread.IsAlive)
+            {
+                ReadThread.Join();
+            }
+            SerialPort.Dispose();
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Module.Singleton
 
         private void OnApplicationQuit()
         {
-            _instance?.Dispose();
+            _instance.Dispose();
             _instance = null;
         }
     }
