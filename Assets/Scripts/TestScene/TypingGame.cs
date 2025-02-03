@@ -59,6 +59,24 @@ public class TypingGame : MonoBehaviour
 
     void OnInputChanged(string input)
     {
+        if (!isGameRunning) return;
+
+        if (input.Length > currentWord.Length)
+        {
+            inputField.text = input.Substring(0, currentWord.Length);
+            return;
+        }
+
+        for (int i = 0; i < input.Length; i++)
+        {
+            if (input[i] != currentWord[i])
+            {
+                inputField.text = input.Substring(0, i);
+                inputField.caretPosition = inputField.text.Length;
+                return;
+            }
+        }
+
         if (input.Equals(currentWord))
         {
             score++;
