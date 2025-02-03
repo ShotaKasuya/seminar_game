@@ -14,6 +14,7 @@ namespace View.OutGame
 
         public Action DecisionEvent { get; set; }
         public Action<SelectedSerial> SelectEvent { get; set; }
+
         private void Awake()
         {
             submitButton.onClick.AddListener(OnSubmit);
@@ -23,7 +24,15 @@ namespace View.OutGame
         public void UpdateList(List<string> listContents)
         {
             portDropdown.ClearOptions();
-            portDropdown.AddOptions(listContents);
+            if (listContents.Count == 0)
+            {
+                portDropdown.AddOptions(new List<string>() { "None" });
+            }
+            else
+            {
+                portDropdown.AddOptions(listContents);
+            }
+
             InvokeSelectEvent(0);
         }
 

@@ -9,15 +9,26 @@ namespace Installer
 {
     public class GlobalLocator : SingletonMonoBehaviour<GlobalLocator>, IDisposable
     {
+        [SerializeField] private bool useDebugSerial;
+
         protected override void Awake()
         {
             base.Awake();
 
-            var serialPort = SerialPortFactory.MakeSerial();
+            if (useDebugSerial)
+            {
+                var moqSerial = new MoqSerialPort();
+                Register<IPortWritable>(moqSerial);
+                Register<IPortInitializable>(moqSerial);
+            }
+            else
+            {
+                var serialPort = SerialPortFactory.MakeSerial();
 
-            var portManager = new SerialPortManager(serialPort);
-            Register<IPortWritable>(portManager);
-            Register<IPortInitializable>(portManager);
+                var portManager = new SerialPortManager(serialPort);
+                Register<IPortWritable>(portManager);
+                Register<IPortInitializable>(portManager);
+            }
         }
 
         private Dictionary<Type, object> InstanceDictionary { get; } = new Dictionary<Type, object>();

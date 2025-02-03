@@ -1,4 +1,3 @@
-
 namespace Module.Serial
 {
     public interface IPortWritable
@@ -10,10 +9,22 @@ namespace Module.Serial
     {
         public void InitializePort(string portName);
     }
-    
+
     public struct Packet
     {
         public Packet
+        (
+            HandType hand,
+            FingerType finger,
+            float duration
+        )
+        {
+            Hand = hand;
+            Finger = finger;
+            Duration = (int)(duration * 10);
+        }
+
+        private Packet
         (
             HandType hand,
             FingerType finger,

@@ -1,10 +1,12 @@
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
 using System.IO.Ports;
+using System.Linq;
 #elif UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX
 using System.IO;
+using System;
 #endif
 using System.Collections.Generic;
-using System.Linq;
+using UnityEngine;
 
 namespace Module.Serial
 {

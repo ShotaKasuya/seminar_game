@@ -55,7 +55,7 @@ namespace View.OutGame
         {
             if (float.TryParse(input, out var result))
             {
-                _time = (int)(result * 10);
+                _time = result;
             }
             else
             {
@@ -67,6 +67,6 @@ namespace View.OutGame
 
         private HandType _currentHandType;
         private FingerType _currentFingerType;
-        private int _time;
+        private float _time;
     }
 }
