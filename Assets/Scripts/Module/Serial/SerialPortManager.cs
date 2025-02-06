@@ -22,7 +22,7 @@ namespace Module.Serial
             SerialPort.Open();
         }
 
-        public void Tick()
+        public void Tick(float deltaTime)
         {
             if (!string.IsNullOrEmpty(_buf))
             {
