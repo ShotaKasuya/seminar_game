@@ -15,7 +15,7 @@ namespace Domain.IModel.InGame
     /// </summary>
     public interface IFailEventModel
     {
-        public Action OnFailEvent { get; set; }
+        public Action<char> OnFailEvent { get; set; }
     }
 
     /// <summary>
@@ -24,6 +24,6 @@ namespace Domain.IModel.InGame
     public interface IQuestionResultModel
     {
         public void OnSuccess();
-        public void OnFail(char butChar);
+        public void OnFail(char badChar);
     }
 }
