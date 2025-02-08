@@ -37,9 +37,10 @@ namespace Installer
 
         private void Update()
         {
+            var time = Time.deltaTime;
             foreach (var tickable in Tickables)
             {
-                tickable.Tick();
+                tickable.Tick(time);
             }
         }
 
