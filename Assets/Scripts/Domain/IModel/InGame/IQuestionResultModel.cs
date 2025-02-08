@@ -15,8 +15,7 @@ namespace Domain.IModel.InGame
     /// </summary>
     public interface IFailEventModel
     {
-        public void SubscribeFail(Func<Unit> func);
-        public void UnsubscribeFail(Func<Unit> func);
+        public Action OnFailEvent { get; set; }
     }
 
     /// <summary>
@@ -26,9 +25,5 @@ namespace Domain.IModel.InGame
     {
         public void OnSuccess();
         public void OnFail(char butChar);
-    }
-
-    public struct Unit
-    {
     }
 }
