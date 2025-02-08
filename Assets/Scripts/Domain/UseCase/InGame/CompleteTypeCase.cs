@@ -11,22 +11,26 @@ namespace Domain.UseCase.InGame
         public CompleteTypeCase
         (
             ICompleteEventModel completeEventModel,
-            IWordGeneratableModel questionMakeModel
+            IQuestionWordModel questionWordModel,
+            IMutQuestionModel questionModel
         )
         {
             CompleteEventModel = completeEventModel;
-            QuestionMakeModel = questionMakeModel;
+            QuestionWordModel = questionWordModel;
+            QuestionModel = questionModel;
             
             completeEventModel.OnCompleteEvent += OnComplete;
         }
 
         private void OnComplete()
         {
-            QuestionMakeModel.MakeNewQuestion();
+            var question = QuestionWordModel.GetQuestion();
+            QuestionModel.SetNewQuestion(question);
         }
         
         private ICompleteEventModel CompleteEventModel { get; }
-        private IWordGeneratableModel QuestionMakeModel { get; }
+        private IQuestionWordModel QuestionWordModel { get; }
+        private IMutQuestionModel QuestionModel { get; }
 
         public void Dispose()
         {
