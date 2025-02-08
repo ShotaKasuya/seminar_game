@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Domain.UseCase.InGame
 {
+    /// <summary>
+    /// 入力された文字が正しいかを判定する
+    /// </summary>
     public class JudgeTypeCase : IDisposable
     {
         public JudgeTypeCase

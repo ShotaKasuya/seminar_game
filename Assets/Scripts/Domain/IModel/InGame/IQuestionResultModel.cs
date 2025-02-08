@@ -7,8 +7,7 @@ namespace Domain.IModel.InGame
     /// </summary>
     public interface ICompleteEventModel
     {
-        public void SubscribeComplete(Func<Unit> func);
-        public void UnsubscribeComplete(Func<Unit> func);
+        public Action OnCompleteEvent { get; set; }
     }
     
     /// <summary>

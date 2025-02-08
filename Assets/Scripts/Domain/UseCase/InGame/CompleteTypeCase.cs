@@ -3,26 +3,26 @@ using Domain.IModel.InGame;
 
 namespace Domain.UseCase.InGame
 {
+    /// <summary>
+    /// 正解した際の処理
+    /// </summary>
     public class CompleteTypeCase: IDisposable
     {
         public CompleteTypeCase
         (
             ICompleteEventModel completeEventModel,
             IWordGeneratableModel questionMakeModel
-            
         )
         {
             CompleteEventModel = completeEventModel;
             QuestionMakeModel = questionMakeModel;
             
-            completeEventModel.SubscribeComplete(OnComplete);
+            completeEventModel.OnCompleteEvent += OnComplete;
         }
 
-        private Unit OnComplete()
+        private void OnComplete()
         {
             QuestionMakeModel.MakeNewQuestion();
-
-            return new Unit();
         }
         
         private ICompleteEventModel CompleteEventModel { get; }
@@ -30,7 +30,7 @@ namespace Domain.UseCase.InGame
 
         public void Dispose()
         {
-            CompleteEventModel.UnsubscribeComplete(OnComplete);
+            CompleteEventModel.OnCompleteEvent -= OnComplete;
         }
     }
 }
