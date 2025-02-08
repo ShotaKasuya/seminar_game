@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Model.InGame
 {
     [CreateAssetMenu(fileName = "GameSetting", menuName = "GameSetting", order = 0)]
-    public class GameSetting : ScriptableObject
+    public class GameSettingModel : ScriptableObject
     {
         [SerializeField] private List<string> wordList;
         [SerializeField] private float gameTime;
