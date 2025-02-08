@@ -13,8 +13,8 @@ namespace Domain.IModel.InGame
         public string Question { get; }
     }
 
-    public interface IWordGeneratableModel
+    public interface IMutQuestionModel
     {
-        public void MakeNewQuestion();
+        public void SetNewQuestion(string question);
     }
 }
