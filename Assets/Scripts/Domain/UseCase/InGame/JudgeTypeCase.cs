@@ -30,7 +30,7 @@ namespace Domain.UseCase.InGame
         {
             var nextCursor = CurrentTypeModel.NextCursor;
             // todo! : 文字の削除が行われた場合、文字列のロールバック及び警告文の表示を行う
-            if (input.Length != nextCursor)
+            if (input.Length - 1 != nextCursor)
             {
                 Debug.LogError("don't use backspace");
                 return;
@@ -78,7 +78,7 @@ namespace Domain.UseCase.InGame
                 return JudgeResultType.Incorrect;
             }
 
-            if (nextCursor == question.Length)
+            if (nextCursor == question.Length - 1)
             {
                 return JudgeResultType.Complete;
             }

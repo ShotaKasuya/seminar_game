@@ -14,7 +14,7 @@ namespace Model.InGame
         public void SetNewQuestion(string question )
         {
             Question = question;
-            NextCursor = 1;
+            NextCursor = 0;
         }
     }
 }

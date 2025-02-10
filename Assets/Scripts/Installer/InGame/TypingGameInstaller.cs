@@ -18,7 +18,7 @@ namespace Installer.InGame
             var missTypeCase = new MissTypeCase(questionResultEventModel, port, gameSetting);
             var questionModel = new QuestionModel();
             var judgeTypeCase = new JudgeTypeCase(questionModel, questionModel, questionResultEventModel, uiElementView);
-            // var setQuestionCase = new SetQuestionCase(gameSetting, questionModel, questionResultEventModel);
+            var setQuestionCase = new SetQuestionCase(gameSetting, questionModel, uiElementView, uiElementView, questionResultEventModel);
             var timerModel = new TimerModel();
             var timeUpdateCase = new TimeUpdateCase(timerModel, uiElementView);
             
