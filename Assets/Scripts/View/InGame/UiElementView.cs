@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace View.InGame
 {
-    public class UiElementView : MonoBehaviour, ITimerView, IInputView, IWordView, IScoreView
+    public class UiElementView : MonoBehaviour, ITimerView, IInputView, Domain.IView.InGame.IQuestionView, IScoreView
     {
         [SerializeField] private Text wordDisplayText;
         [SerializeField] private InputField inputField;

@@ -1,13 +1,15 @@
+using System;
 using Domain.IModel.InGame;
 
 namespace Model.InGame
 {
-    public class QuestionModel: ICurrentTypeModel, IQuestionModel, IMutQuestionModel
+    public class QuestionModel: IMutQuestionModel, IQuestionAnswerModel
     {
         public int NextCursor { get; private set; } = 1;
         public void Success()
         {
             NextCursor++;
+            OnUpdate.Invoke();
         }
 
         public string Question { get; private set; }
@@ -15,6 +17,9 @@ namespace Model.InGame
         {
             Question = question;
             NextCursor = 0;
+            OnUpdate?.Invoke();
         }
+
+        public Action OnUpdate { get; set; }
     }
 }

@@ -14,15 +14,13 @@ namespace Domain.UseCase.InGame
         (
             IQuestionWordModel questionWordModel,
             IMutQuestionModel questionModel,
-            IWordView wordView,
-            IInputView inputView,
+            IQuestionView questionView,
             ICompleteEventModel completeEventModel
         )
         {
             QuestionWordModel = questionWordModel;
             QuestionModel = questionModel;
-            WordView = wordView;
-            InputView = inputView;
+            QuestionView = questionView;
             CompleteEventModel = completeEventModel;
             
             SetQuestion();
@@ -33,14 +31,12 @@ namespace Domain.UseCase.InGame
         {
             var question = QuestionWordModel.GetQuestion();
             QuestionModel.SetNewQuestion(question);
-            WordView.ShowText(question);
-            InputView.Clear();
+            QuestionView.ShowText(question);
         }
 
         private IQuestionWordModel QuestionWordModel { get; }
         private IMutQuestionModel QuestionModel { get; }
-        private IWordView WordView { get; }
-        private IInputView InputView { get; }
+        private IQuestionView QuestionView { get; }
         private ICompleteEventModel CompleteEventModel { get; }
 
         public void Dispose()
