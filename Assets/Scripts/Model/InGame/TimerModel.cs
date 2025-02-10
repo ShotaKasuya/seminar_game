@@ -19,7 +19,7 @@ namespace Model.InGame
                 Debug.LogError($"dt must be higher than 0 : {dt}");
             }
 
-            _timeRemain -= dt;
+            TimeRemain -= dt;
         }
 
         public float TimeMax { get; private set; }
