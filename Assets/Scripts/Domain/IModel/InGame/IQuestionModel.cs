@@ -1,7 +1,9 @@
+using System;
+
 namespace Domain.IModel.InGame
 {
     // FIXME: 名前もっとなんかあるはず
-    public interface ICurrentTypeModel
+    public interface IPlayerAnswerModel
     {
         public int NextCursor { get; }
         
@@ -11,6 +13,11 @@ namespace Domain.IModel.InGame
     public interface IQuestionModel
     {
         public string Question { get; }
+    }
+
+    public interface IQuestionAnswerModel: IPlayerAnswerModel, IQuestionModel
+    {
+        public Action OnUpdate { get; set; }
     }
 
     public interface IMutQuestionModel

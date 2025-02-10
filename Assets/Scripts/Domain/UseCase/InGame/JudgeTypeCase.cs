@@ -12,43 +12,41 @@ namespace Domain.UseCase.InGame
     {
         public JudgeTypeCase
         (
-            ICurrentTypeModel currentTypeModel,
+            IPlayerAnswerModel playerAnswerModel,
             IQuestionModel questionModel,
             IQuestionResultModel questionResultModel,
-            IInputView inputView
+            IPlayerTypeView playerTypeView
+            // IGameStateModel gameStateModel
         )
         {
-            CurrentTypeModel = currentTypeModel;
+            PlayerAnswerModel = playerAnswerModel;
             QuestionModel = questionModel;
             QuestionResultModel = questionResultModel;
-            InputView = inputView;
+            PlayerTypeView = playerTypeView;
+            // GameStateModel = gameStateModel;
 
-            inputView.ValueChangedEvent += OnChange;
+            playerTypeView.TypeEvent += OnType;
         }
 
-        private void OnChange(string input)
+        private void OnType(char input)
         {
-            var nextCursor = CurrentTypeModel.NextCursor;
-            // todo! : 文字の削除が行われた場合、文字列のロールバック及び警告文の表示を行う
-            if (input.Length != nextCursor)
-            {
-                Debug.LogError("don't use backspace");
-                return;
-            }
+            // if (!GameStateModel.IsPlaying())
+            // {
+            //    return; 
+            // }
 
-            var currentInput = input[^1];
-
-            var result = Judge(currentInput, nextCursor);
+            var cursor = PlayerAnswerModel.NextCursor;
+            var result = Judge(input, cursor);
             switch (result)
             {
                 case JudgeResultType.Correct:
                 {
-                    CurrentTypeModel.Success();
+                    PlayerAnswerModel.Success();
                     break;
                 }
                 case JudgeResultType.Incorrect:
                 {
-                    QuestionResultModel.OnFail(currentInput);
+                    QuestionResultModel.OnFail(input);
                     break;
                 }
                 case JudgeResultType.Complete:
@@ -78,7 +76,7 @@ namespace Domain.UseCase.InGame
                 return JudgeResultType.Incorrect;
             }
 
-            if (nextCursor == question.Length)
+            if (nextCursor == question.Length - 1)
             {
                 return JudgeResultType.Complete;
             }
@@ -86,14 +84,15 @@ namespace Domain.UseCase.InGame
             return JudgeResultType.Correct;
         }
 
-        private ICurrentTypeModel CurrentTypeModel { get; }
+        private IPlayerAnswerModel PlayerAnswerModel { get; }
         private IQuestionModel QuestionModel { get; }
         private IQuestionResultModel QuestionResultModel { get; }
-        private IInputView InputView { get; }
+        private IPlayerTypeView PlayerTypeView { get; }
+        // private IGameStateModel GameStateModel { get; }
 
         public void Dispose()
         {
-            InputView.ValueChangedEvent -= OnChange;
+            PlayerTypeView.TypeEvent += OnType;
         }
     }
 }

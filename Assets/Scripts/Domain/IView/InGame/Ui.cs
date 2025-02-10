@@ -2,15 +2,11 @@
 
 namespace Domain.IView.InGame
 {
-    public interface IWordView
+    public interface IPlayerTypeView
     {
-        public void ShowText(string text);
+        public Action<char> TypeEvent { get; set; }
     }
-
-    public interface IInputView
-    {
-        public Action<string> ValueChangedEvent { get; set; }
-    }
+    
 
     public interface IScoreView
     {
