@@ -2,12 +2,6 @@
 
 namespace Domain.IView.InGame
 {
-    public interface IInputView
-    {
-        public Action<string> ValueChangedEvent { get; set; }
-        public void Clear();
-    }
-
     public interface IPlayerTypeView
     {
         public Action<char> TypeEvent { get; set; }
