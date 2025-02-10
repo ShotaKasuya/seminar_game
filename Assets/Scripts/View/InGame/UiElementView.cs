@@ -14,9 +14,14 @@ namespace View.InGame
 
         private void Awake()
         {
-            inputField.onValueChanged.AddListener(ValueChangedEvent.Invoke);
+            inputField.onValueChanged.AddListener(OnValueChanged);
         }
 
+        private void OnValueChanged(string str)
+        {
+            ValueChangedEvent?.Invoke(str);
+        }
+        
         public void SetTime(float time)
         {
             timerText.text = time.ToString("F2");
