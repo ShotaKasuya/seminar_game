@@ -1,3 +1,16 @@
 {
-	"name": "IModel"
+    "name": "IModel",
+    "rootNamespace": "",
+    "references": [
+        "GUID:39217cea6624d47e5baf5571a2f2c912"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -1,22 +1,26 @@
 using System;
 using Domain.IModel.InGame;
 using Domain.IView.InGame;
+using UnityEngine;
 
 namespace Domain.UseCase.InGame
 {
+    /// <summary>
+    /// 問題をセットする
+    /// </summary>
     public class SetQuestionCase: IDisposable
     {
         public SetQuestionCase
         (
             IQuestionWordModel questionWordModel,
             IMutQuestionModel questionModel,
-            IWordView wordView,
+            IQuestionView questionView,
             ICompleteEventModel completeEventModel
         )
         {
             QuestionWordModel = questionWordModel;
             QuestionModel = questionModel;
-            WordView = wordView;
+            QuestionView = questionView;
             CompleteEventModel = completeEventModel;
             
             SetQuestion();
@@ -27,12 +31,12 @@ namespace Domain.UseCase.InGame
         {
             var question = QuestionWordModel.GetQuestion();
             QuestionModel.SetNewQuestion(question);
-            WordView.ShowText(question);
+            QuestionView.ShowText(question);
         }
 
         private IQuestionWordModel QuestionWordModel { get; }
         private IMutQuestionModel QuestionModel { get; }
-        private IWordView WordView { get; }
+        private IQuestionView QuestionView { get; }
         private ICompleteEventModel CompleteEventModel { get; }
 
         public void Dispose()
