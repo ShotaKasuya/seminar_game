@@ -102,6 +102,11 @@ namespace Module.Installer
             }
         }
 
+        private void OnDestroy()
+        {
+            Dispose();
+        }
+
         public void Dispose()
         {
             foreach (var disposable in Disposables)

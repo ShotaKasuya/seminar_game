@@ -1,4 +1,4 @@
-namespace Domain.UseCase.InGame
+namespace Domain.IModel.InGame
 {
     public interface IQuestionWordModel
     {

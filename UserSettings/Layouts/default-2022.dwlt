@@ -773,7 +773,7 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 974.3955, y: 447.9094, z: -4.844769}
+    m_Target: {x: 960, y: 540, z: 0}
     speed: 2
     m_Value: {x: 974.3955, y: 447.9094, z: -4.844769}
   m_RenderMode: 0
@@ -825,7 +825,7 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 565.8701
+    m_Target: 1101.4536
     speed: 2
     m_Value: 565.8701
   m_Ortho:
@@ -1073,10 +1073,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1057
-    y: 81
-    width: 396
-    height: 902
+    x: 3331
+    y: 92
+    width: 533
+    height: 1307
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_StartGridSize: 16
   m_LastFolders: []
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: C:\Users\SAHA\seminar_game
+  m_LastProjectPath: "/home/sairas/\u30C7\u30B9\u30AF\u30C8\u30C3\u30D7/school/seminar/seminar_game"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
