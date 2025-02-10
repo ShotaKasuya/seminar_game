@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace View.InGame
 {
-    public class UiElementView : MonoBehaviour, ITimerView, IInputView
+    public class UiElementView : MonoBehaviour, ITimerView, IInputView, IWordView, IScoreView
     {
         [SerializeField] private Text wordDisplayText;
         [SerializeField] private InputField inputField;
@@ -28,5 +28,14 @@ namespace View.InGame
         }
 
         public Action<string> ValueChangedEvent { get; set; }
+        public void ShowText(string text)
+        {
+           wordDisplayText.text = text; 
+        }
+
+        public void SetScore(int score)
+        {
+           scoreText.text = score.ToString(); 
+        }
     }
 }
