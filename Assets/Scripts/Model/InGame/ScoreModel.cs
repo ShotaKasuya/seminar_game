@@ -9,7 +9,11 @@ namespace Model.InGame
 
         public int RevisedScore
         {
-            set => Score = value;
+            set
+            {
+                Score = value;
+                OnScoreChange?.Invoke(value);
+            }
         }
 
         public Action<int> OnScoreChange { get; set; }

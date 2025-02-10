@@ -18,3 +18,5 @@ MonoBehaviour:
   - sasisuseso
   gameTime: 0
   attackTime: 0
+  inputColor: 6
+  questionColor: 7

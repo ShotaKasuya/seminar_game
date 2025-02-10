@@ -1,6 +1,7 @@
 using System;
 using Domain.IModel.InGame;
 using Domain.IView.InGame;
+using UnityEngine;
 
 namespace Domain.UseCase.InGame
 {
@@ -8,25 +9,26 @@ namespace Domain.UseCase.InGame
     {
         public UiUpdateCase
         (
-            // IScoreModel scoreModel,
-            // IScoreView scoreView,
+            IScoreModel scoreModel,
+            IScoreView scoreView,
             IQuestionAnswerModel questionModel,
             IQuestionView questionView,
             ITextColorModel textColorModel
         )
         {
-            // ScoreModel = scoreModel;
-            // ScoreView = scoreView;
+            ScoreModel = scoreModel;
+            ScoreView = scoreView;
             QuestionModel = questionModel;
             QuestionView = questionView;
             TextColorModel = textColorModel;
 
-            // scoreModel.OnScoreChange += UpdateScoreView;
+            scoreModel.OnScoreChange += UpdateScoreView;
             QuestionModel.OnUpdate += UpdateQuestionView;
         }
 
         private void UpdateScoreView(int score)
         {
+            Debug.Log("score change");
             ScoreView.SetScore(score);
         }
 
