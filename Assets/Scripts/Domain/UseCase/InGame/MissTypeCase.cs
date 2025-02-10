@@ -1,9 +1,10 @@
+using System;
 using Domain.IModel.InGame;
 using Module.Serial;
 
 namespace Domain.UseCase.InGame
 {
-    public class MissTypeCase
+    public class MissTypeCase: IDisposable
     {
         public MissTypeCase
         (
@@ -33,5 +34,10 @@ namespace Domain.UseCase.InGame
         private IFailEventModel FailEventModel { get; }
         private IPortWritable PortWritable { get; }
         private IElectricTimeModel ElectricTimeModel { get; }
+
+        public void Dispose()
+        {
+            FailEventModel.OnFailEvent -= OnFailEvent;
+        }
     }
 }

@@ -428,6 +428,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &540963456
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 506536473491737388, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 960
+      objectReference: {fileID: 0}
+    - target: {fileID: 506536473491737388, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 506536473491737388, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 506536473491737388, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 506536473491737388, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 506536473491737388, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 506536473491737388, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 506536473491737388, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 506536473491737388, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 506536473491737388, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933857286700784625, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
+      propertyPath: useDebugSerial
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080439286685517142, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
+      propertyPath: m_Name
+      value: Singleton
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2815c657c46d36f51b0142b02843c924, type: 3}
 --- !u!1 &1226229656
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,6 +985,7 @@ GameObject:
   - component: {fileID: 1646870990}
   - component: {fileID: 1646870992}
   - component: {fileID: 1646870991}
+  - component: {fileID: 1646870993}
   m_Layer: 5
   m_Name: WordDisplayText
   m_TagString: Untagged
@@ -972,11 +1034,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
+    m_FontSize: 49
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 49
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -992,6 +1054,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646870989}
   m_CullTransparentMesh: 1
+--- !u!114 &1646870993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646870989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1000,3 +1077,4 @@ SceneRoots:
   - {fileID: 1364857773}
   - {fileID: 476704323}
   - {fileID: 1226229658}
+  - {fileID: 540963456}

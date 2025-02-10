@@ -4,7 +4,7 @@ namespace Model.InGame
 {
     public class QuestionModel: ICurrentTypeModel, IQuestionModel, IMutQuestionModel
     {
-        public int NextCursor { get; private set; }
+        public int NextCursor { get; private set; } = 1;
         public void Success()
         {
             NextCursor++;
@@ -14,7 +14,7 @@ namespace Model.InGame
         public void SetNewQuestion(string question )
         {
             Question = question;
-            NextCursor = 0;
+            NextCursor = 1;
         }
     }
 }

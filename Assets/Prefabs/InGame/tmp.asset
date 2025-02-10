@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a16828cf764add934018e647fb7111, type: 3}
   m_Name: tmp
   m_EditorClassIdentifier: 
-  wordList: []
+  wordList:
+  - aiueo
+  - kakikukeko
+  - sasisuseso
   gameTime: 0
   attackTime: 0

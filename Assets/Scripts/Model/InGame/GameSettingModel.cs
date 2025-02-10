@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Domain.IModel.InGame;
-using Domain.UseCase.InGame;
 using UnityEngine;
 
 namespace Model.InGame
