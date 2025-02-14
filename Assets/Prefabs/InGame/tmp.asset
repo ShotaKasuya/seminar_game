@@ -42,7 +42,7 @@ MonoBehaviour:
   - aiueo
   - kakikukeko
   - sasisuseso
-  gameTime: 0
-  attackTime: 0
+  gameTime: 60
+  attackTime: 6
   inputColor: 6
   questionColor: 7
