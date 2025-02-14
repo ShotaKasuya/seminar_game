@@ -13,10 +13,36 @@ MonoBehaviour:
   m_Name: tmp
   m_EditorClassIdentifier: 
   wordList:
+  - apple
+  - banana
+  - cherry
+  - dragon
+  - elephant
+  - forest
+  - giraffe
+  - horizon
+  - island
+  - jungle
+  - kangaroo
+  - lightning
+  - mountain
+  - notebook
+  - ocean
+  - penguin
+  - quasar
+  - rainbow
+  - sunflower
+  - tornado
+  - umbrella
+  - volcano
+  - waterfall
+  - xylophone
+  - yesterday
+  - zebra
   - aiueo
   - kakikukeko
   - sasisuseso
-  gameTime: 0
-  attackTime: 0
+  gameTime: 60
+  attackTime: 6
   inputColor: 6
   questionColor: 7
