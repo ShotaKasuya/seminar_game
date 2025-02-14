@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene/SendSerial.unity
     guid: b3d59b32f28326d90b01d8eb04cf3d59
+  - enabled: 1
+    path: Assets/Scenes/TestScene/SAHATestScene.unity
+    guid: c536127f6e4f2964e90888d4b5c72db3
   m_configObjects: {}

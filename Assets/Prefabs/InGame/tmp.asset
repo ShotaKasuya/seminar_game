@@ -43,6 +43,6 @@ MonoBehaviour:
   - kakikukeko
   - sasisuseso
   gameTime: 60
-  attackTime: 6
+  attackTime: 3
   inputColor: 6
   questionColor: 7
