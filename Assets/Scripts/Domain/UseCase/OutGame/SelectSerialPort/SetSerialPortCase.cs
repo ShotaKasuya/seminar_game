@@ -30,7 +30,7 @@ namespace Domain.UseCase.OutGame.SelectSerialPort
             var serialName = SerialModel.SelectedPortName;
             Debug.Log(serialName);
             PortInitializable.InitializePort(serialName);
-            SceneManager.LoadScene("SendSerial");
+            SceneManager.LoadScene("SAHATestScene");
         }
 
         private void OnSelect(SelectedSerial serial)
